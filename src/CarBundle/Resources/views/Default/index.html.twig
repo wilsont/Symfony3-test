@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{  parent() }}
+    gg!
+{% endblock %}
+
+{% block body %}
+
+    {{ form_start(form, { attr: { class: 'form-inline'}}) }}
+        {{ form_widget(form, { attr: { placeholder: 'Search'}}) }}
+        <button type="submit" class="btn" value="submit">submit</button>
+        {{  form_errors(form.search) }}
+    {{ form_end(form) }}
+    {% for car in cars %}
+        <div>
+            {{ car.make.name }}
+        </div>
+        <div>
+            {{ car.model.name }}
+        </div>
+        <div>
+            <a href='{{ url('cardetail', { id: car.id}) }}'>
+                show detail
+            </a>
+        </div>
+    {% endfor %}
+{% endblock %}
